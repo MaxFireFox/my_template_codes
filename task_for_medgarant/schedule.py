@@ -23,7 +23,19 @@ busy = [
     }
 ]
 
-my_busy = busy.copy()
+
+def to_stand(str_time: str) -> str:
+    """
+    Turns string format time to "hh:mm" standard in case input is "h:mm"
+    :param str_time: string format time input
+    :return: "hh:mm" standard string format time
+    """
+    if len(str_time) == 4:
+        return "0"+str_time
+    return str_time
+
+
+my_busy = [{'start': to_stand(x['start']), 'stop': to_stand(x['stop'])} for x in busy]
 
 my_busy.sort(key=lambda x: x['start'])
 
